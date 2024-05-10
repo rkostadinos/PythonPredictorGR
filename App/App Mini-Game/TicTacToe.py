@@ -117,37 +117,37 @@ while True:
             CheckColumns()
             CheckDiagonals()
         if keys[pygame.K_4]:
-            screen.blit(Xi_Surface, (20, 185))
+            screen.blit(Omicron_Surface, (20, 185))
             TTT_Board[3] = '1'
             CheckRows()
             CheckColumns()
             CheckDiagonals()
         if keys[pygame.K_5]:
-            screen.blit(Xi_Surface, (185, 185))
+            screen.blit(Omicron_Surface, (185, 185))
             TTT_Board[4] = '1'
             CheckRows()
             CheckColumns()
             CheckDiagonals()
         if keys[pygame.K_6]:
-            screen.blit(Xi_Surface, (365, 185))
+            screen.blit(Omicron_Surface, (365, 185))
             TTT_Board[5] = '1'
             CheckRows()
             CheckColumns()
             CheckDiagonals()
         if keys[pygame.K_7]:
-            screen.blit(Xi_Surface, (20, 360))
+            screen.blit(Omicron_Surface, (20, 360))
             TTT_Board[6] = '1'
             CheckRows()
             CheckColumns()
             CheckDiagonals()
         if keys[pygame.K_8]:
-            screen.blit(Xi_Surface, (190, 360))
+            screen.blit(Omicron_Surface, (190, 360))
             TTT_Board[7] = '1'
             CheckRows()
             CheckColumns()
             CheckDiagonals()
         if keys[pygame.K_9]:
-            screen.blit(Xi_Surface, (360, 360))
+            screen.blit(Omicron_Surface, (360, 360))
             TTT_Board[8] = '1'
             CheckRows()
             CheckColumns()
