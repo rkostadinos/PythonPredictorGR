@@ -386,3 +386,4 @@ while BreakerBool == False:
 
     pygame.display.update() # Ανανέωση του display
     clock.tick(60) # βάζει το παιχνίδι σε 60 Frames Per Second
+clock.tick(1)
