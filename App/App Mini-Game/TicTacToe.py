@@ -1,9 +1,10 @@
 import pygame
+import random
 from sys import exit
 """
 inf2021192 Κωνσταντίνος Ράπτης
 Τρίλιζα με GUI χρησιμοποιώντας την Pygame βιβλιοθήκη
-Ο κώδικας δεν είναι ολοκληρωμένος ακόμα, διότι έχει κάποια bug.
+Δεν έχει bug από ό,τι γνωρίζουμε.
 Βοήθεια για τον κώδικα πήρα από:
 https://youtu.be/AY9MnQ4x3zk?si=MRJlrXhmpD3PlMQy
 https://youtu.be/dK6gJw4-NCo?si=Q5uGz6X6o4kFAs5p
@@ -28,195 +29,360 @@ Vertical_surface1 = pygame.Surface((20, 500))
 Vertical_surface1.fill('Black')
 Vertical_surface2 = pygame.Surface((20, 500))
 Vertical_surface2.fill('Black')
-Omicron_Surface = pygame.image.load('Omicron.png')
-Xi_Surface = pygame.image.load('Xi.png')
-Xi_Surf_Boolean = True
 screen.blit(BackGround_surface, (0, 0))
 BreakerBool = False # Αυτή η μεταβλητή boolean χρησιμοποιείται για να σπάσει το main loop (γραμμή 38)
+M_counter = 0
 
 
-while True:
+
+while BreakerBool == False:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
-    # screen.blit(BackGround_surface, (0, 0))
     screen.blit(Horizontal_surface1, (0, 137.5)) # Εδώ δημιουργούνται οι ευθείες γραμμές του grid της τρίλιζας
     screen.blit(Horizontal_surface2, (0, 317.5))
     screen.blit(Vertical_surface1, (137.5, 0))
     screen.blit(Vertical_surface2, (317.5, 0))
-    # screen.blit(Omicron_Surface, (190, 360))
     keys = pygame.key.get_pressed()
-    if BreakerBool:
-        break
-    def CheckRows(): # Αυτή η συνάρτηση τσεκάρει κάθε γραμμή, εμφανίζει 'YOU WON' και σπάει την while loop
+
+    # Αυτή η συνάρτηση δίνει ένα ψευδοτυχαίο αριθμό απο το 1 μέχρι το 20
+    # με σκοπό να χρησιμοποιηθεί η μεταβλητή altPredict για την αλλαγή της αρχικής πρόβλεψης
+    def winnerChance():
+        AltPredict = random.randint(1, 20)
+
+
+
+
+
+    # Αυτή η συνάρτηση τσεκάρει κάθε γραμμή, εμφανίζει 'X/O WON' και σπάει την while loop
+    def CheckRows():
         global BreakerBool
-        if TTT_Board[0] == TTT_Board[1] == TTT_Board[2] and TTT_Board[0] == '1':
+        if TTT_Board[0] == TTT_Board[1] == TTT_Board[2] and TTT_Board[0] == 'x':
             screen.blit(BackGround_surface, (0, 0))
-            text_surface = font.render('YOU WON', True, 'Black')
-            screen.blit(text_surface, (105, 100))
-            BreakerBool = True
-        if TTT_Board[3] == TTT_Board[4] == TTT_Board[5] and TTT_Board[3] == '1':
-            screen.blit(BackGround_surface, (0, 0))
-            text_surface = font.render('YOU WON', True, 'Black')
-            screen.blit(text_surface, (105, 100))
-            BreakerBool = True
-        if TTT_Board[6] == TTT_Board[7] == TTT_Board[8] and TTT_Board[6] == '1':
-            screen.blit(BackGround_surface, (0, 0))
-            text_surface = font.render('YOU WON', True, 'Black')
+            text_surface = font.render('X WON', True, 'Black')
             screen.blit(text_surface, (105, 100))
             BreakerBool = True
 
-    def CheckColumns(): # Αυτή η συνάρτηση τσεκάρει κάθε στήλη, εμφανίζει 'YOU WON' και σπάει την while loop
-        global BreakerBool
-        if TTT_Board[0] == TTT_Board[3] == TTT_Board[6] and TTT_Board[0] == '1':
+        elif TTT_Board[0] == TTT_Board[1] == TTT_Board[2] and TTT_Board[0] == 'o':
             screen.blit(BackGround_surface, (0, 0))
-            text_surface = font.render('YOU WON', True, 'Black')
-            screen.blit(text_surface, (105, 100))
-            BreakerBool = True
-        if TTT_Board[1] == TTT_Board[4] == TTT_Board[7] and TTT_Board[1] == '1':
-            screen.blit(BackGround_surface, (0, 0))
-            text_surface = font.render('YOU WON', True, 'Black')
-            screen.blit(text_surface, (105, 100))
-            BreakerBool = True
-        if TTT_Board[2] == TTT_Board[5] == TTT_Board[8] and TTT_Board[2] == '1':
-            screen.blit(BackGround_surface, (0, 0))
-            text_surface = font.render('YOU WON', True, 'Black')
-            screen.blit(text_surface, (105, 100))
-            BreakerBool = True
-    def CheckDiagonals(): # Αυτή η συνάρτηση τσεκάρει κάθε διαγώνιο, εμφανίζει 'YOU WON' και σπάει την while loop
-        global BreakerBool
-        if TTT_Board[0] == TTT_Board[4] == TTT_Board[8] and TTT_Board[0] == '1':
-            screen.blit(BackGround_surface, (0, 0))
-            text_surface = font.render('YOU WON', True, 'Black')
-            screen.blit(text_surface, (105, 100))
-            BreakerBool = True
-        if TTT_Board[2] == TTT_Board[4] == TTT_Board[6] and TTT_Board[2] == '1':
-            screen.blit(BackGround_surface, (0, 0))
-            text_surface = font.render('YOU WON', True, 'Black')
+            text_surface = font.render('O WON', True, 'Black')
             screen.blit(text_surface, (105, 100))
             BreakerBool = True
 
-    def switchPlayer(): # Η χρήση της συνάρτησης είναι να αλλάζει τον παίχτη (δηλαδή, σειρά 1 ειναι Χ και σειρά 2 ειναι Ο, κλπ) και τσεκάρει τις συνθήκες νίκης
+        if TTT_Board[3] == TTT_Board[4] == TTT_Board[5] and TTT_Board[3] == 'x':
+            screen.blit(BackGround_surface, (0, 0))
+            text_surface = font.render('X WON', True, 'Black')
+            screen.blit(text_surface, (105, 100))
+            BreakerBool = True
+
+        elif TTT_Board[3] == TTT_Board[4] == TTT_Board[5] and TTT_Board[3] == 'o':
+            screen.blit(BackGround_surface, (0, 0))
+            text_surface = font.render('O WON', True, 'Black')
+            screen.blit(text_surface, (105, 100))
+            BreakerBool = True
+
+
+        if TTT_Board[6] == TTT_Board[7] == TTT_Board[8] and TTT_Board[6] == 'x':
+            screen.blit(BackGround_surface, (0, 0))
+            text_surface = font.render('X WON', True, 'Black')
+            screen.blit(text_surface, (105, 100))
+            BreakerBool = True
+
+        elif TTT_Board[6] == TTT_Board[7] == TTT_Board[8] and TTT_Board[6] == 'o':
+            screen.blit(BackGround_surface, (0, 0))
+            text_surface = font.render('O WON', True, 'Black')
+            screen.blit(text_surface, (105, 100))
+            BreakerBool = True
+
+
+
+
+    # Αυτή η συνάρτηση τσεκάρει κάθε στήλη, εμφανίζει 'X/O WON' και σπάει την while loop
+    def CheckColumns():
+        global BreakerBool
+        if TTT_Board[0] == TTT_Board[3] == TTT_Board[6] and TTT_Board[0] == 'x':
+            screen.blit(BackGround_surface, (0, 0))
+            text_surface = font.render('X WON', True, 'Black')
+            screen.blit(text_surface, (105, 100))
+            BreakerBool = True
+
+        elif TTT_Board[0] == TTT_Board[3] == TTT_Board[6] and TTT_Board[0] == 'o':
+            screen.blit(BackGround_surface, (0, 0))
+            text_surface = font.render('O WON', True, 'Black')
+            screen.blit(text_surface, (105, 100))
+            BreakerBool = True
+
+        if TTT_Board[1] == TTT_Board[4] == TTT_Board[7] and TTT_Board[1] == 'x':
+            screen.blit(BackGround_surface, (0, 0))
+            text_surface = font.render('X WON', True, 'Black')
+            screen.blit(text_surface, (105, 100))
+            BreakerBool = True
+
+        elif TTT_Board[1] == TTT_Board[4] == TTT_Board[7] and TTT_Board[1] == 'o':
+            screen.blit(BackGround_surface, (0, 0))
+            text_surface = font.render('O WON', True, 'Black')
+            screen.blit(text_surface, (105, 100))
+            BreakerBool = True
+
+
+        if TTT_Board[2] == TTT_Board[5] == TTT_Board[8] and TTT_Board[2] == 'x':
+            screen.blit(BackGround_surface, (0, 0))
+            text_surface = font.render('X WON', True, 'Black')
+            screen.blit(text_surface, (105, 100))
+            BreakerBool = True
+
+        elif TTT_Board[2] == TTT_Board[5] == TTT_Board[8] and TTT_Board[2] == 'o':
+            screen.blit(BackGround_surface, (0, 0))
+            text_surface = font.render('O WON', True, 'Black')
+            screen.blit(text_surface, (105, 100))
+            BreakerBool = True
+
+
+
+    def CheckDiagonals(): # Αυτή η συνάρτηση τσεκάρει κάθε διαγώνιο, εμφανίζει 'X/O WON' και σπάει την while loop
+        global BreakerBool
+        if TTT_Board[0] == TTT_Board[4] == TTT_Board[8] and TTT_Board[0] == 'x':
+            screen.blit(BackGround_surface, (0, 0))
+            text_surface = font.render('X WON', True, 'Black')
+            screen.blit(text_surface, (105, 100))
+            BreakerBool = True
+
+        elif TTT_Board[0] == TTT_Board[4] == TTT_Board[8] and TTT_Board[0] == 'o':
+            screen.blit(BackGround_surface, (0, 0))
+            text_surface = font.render('O WON', True, 'Black')
+            screen.blit(text_surface, (105, 100))
+            BreakerBool = True
+
+        if TTT_Board[2] == TTT_Board[4] == TTT_Board[6] and TTT_Board[2] == 'x':
+            screen.blit(BackGround_surface, (0, 0))
+            text_surface = font.render('X WON', True, 'Black')
+            screen.blit(text_surface, (105, 100))
+            BreakerBool = True
+
+        elif TTT_Board[2] == TTT_Board[4] == TTT_Board[6] and TTT_Board[2] == 'o':
+            screen.blit(BackGround_surface, (0, 0))
+            text_surface = font.render('O WON', True, 'Black')
+            screen.blit(text_surface, (105, 100))
+            BreakerBool = True
+
+
+
+    # Αυτή η συνάρτηση τσεκάρει για ισοπαλία και εμφανίζει την κατάσταση ισοπαλίας στο τέλος
+    def CheckTie():
+        global BreakerBool
+        if M_counter >= 9:
+            screen.blit(BackGround_surface, (0, 0))
+            text_surface = font.render('TIE', True, 'Black')
+            screen.blit(text_surface, (105, 100))
+            BreakerBool = True
+
+
+
+
+
+
+    #switchP Αλλάζει την/τον παίχτη, M_counter λειτουργεί ως μετρητής για να ελέγχει την σειρά κάθε παίχτη
+    #Μιας και η πρώτη σειρά θα είναι πάντα το X η πρώτη κίνηση θα αυξήσει το M_counter ανά 1, κ.ο.κ
+
+    def switchP():
+        CheckWinConditions()
+        if M_counter == 0:
+            Player_X()
+        elif M_counter == 1:
+            Player_O()
+        elif M_counter == 2:
+            Player_X()
+        elif M_counter == 3:
+            Player_O()
+        elif M_counter == 4:
+            Player_X()
+        elif M_counter == 5:
+            Player_O()
+        elif M_counter == 6:
+            Player_X()
+        elif M_counter == 7:
+            Player_O()
+        elif M_counter == 8:
+            Player_X()
+        elif M_counter == 9:
+            CheckTie()
+            CheckWinConditions()
+
+
+
+
+
+    # Η χρησιμότητα της συνάρτησης είναι να αναπαριστά τον παίχτη όμικρον
+    # καθώς τσεκάρει αν κάθε κελί είναι άδειο και το πλήκτρο που πατήθηκε είναι κάποιο από τα νούμερα 1 εώς 9
+    def Player_O():
+        global M_counter
+        global TTT_Board
         if keys[pygame.K_1] and TTT_Board[0] == '-':
+            Omicron_Surface = pygame.image.load('Omicron.png')
             screen.blit(Omicron_Surface, (20, 20))
-            TTT_Board[0] = '1'
-            CheckRows()
-            CheckColumns()
-            CheckDiagonals()
-        if keys[pygame.K_2] and TTT_Board[1] == '-':
-            screen.blit(Omicron_Surface, (190, 20))
-            TTT_Board[1] = '1'
-            CheckRows()
-            CheckColumns()
-            CheckDiagonals()
-        if keys[pygame.K_3] and TTT_Board[2] == '-':
-            screen.blit(Omicron_Surface, (190, 20))
-            TTT_Board[2] = '1'
-            CheckRows()
-            CheckColumns()
-            CheckDiagonals()
-        if keys[pygame.K_4]:
-            screen.blit(Omicron_Surface, (20, 185))
-            TTT_Board[3] = '1'
-            CheckRows()
-            CheckColumns()
-            CheckDiagonals()
-        if keys[pygame.K_5]:
-            screen.blit(Omicron_Surface, (185, 185))
-            TTT_Board[4] = '1'
-            CheckRows()
-            CheckColumns()
-            CheckDiagonals()
-        if keys[pygame.K_6]:
-            screen.blit(Omicron_Surface, (365, 185))
-            TTT_Board[5] = '1'
-            CheckRows()
-            CheckColumns()
-            CheckDiagonals()
-        if keys[pygame.K_7]:
-            screen.blit(Omicron_Surface, (20, 360))
-            TTT_Board[6] = '1'
-            CheckRows()
-            CheckColumns()
-            CheckDiagonals()
-        if keys[pygame.K_8]:
-            screen.blit(Omicron_Surface, (190, 360))
-            TTT_Board[7] = '1'
-            CheckRows()
-            CheckColumns()
-            CheckDiagonals()
-        if keys[pygame.K_9]:
-            screen.blit(Omicron_Surface, (360, 360))
-            TTT_Board[8] = '1'
-            CheckRows()
-            CheckColumns()
-            CheckDiagonals()
+            TTT_Board[0] = 'o'
+            M_counter += 1
+            CheckWinConditions()
+            switchP()
 
-    if keys[pygame.K_1]: #Οι if snippets τσεκάρουν για τους εισόδους του πληκτρολογίου και βάζουν στην επιφάνεια το Χ
-        screen.blit(Xi_Surface, (20, 20))
-        TTT_Board[0] = '1'
+        elif keys[pygame.K_2] and TTT_Board[1] == '-':
+            Omicron_Surface = pygame.image.load('Omicron.png')
+            screen.blit(Omicron_Surface, (190, 20))
+            TTT_Board[1] = 'o'
+            M_counter += 1
+            CheckWinConditions()
+            switchP()
+
+        elif keys[pygame.K_3] and TTT_Board[2] == '-':
+            Omicron_Surface = pygame.image.load('Omicron.png')
+            screen.blit(Omicron_Surface, (365, 20))
+            TTT_Board[2] = 'o'
+            M_counter += 1
+            CheckWinConditions()
+            switchP()
+
+        elif keys[pygame.K_4] and TTT_Board[3] == '-':
+            Omicron_Surface = pygame.image.load('Omicron.png')
+            screen.blit(Omicron_Surface, (20, 185))
+            TTT_Board[3] = 'o'
+            M_counter += 1
+            CheckWinConditions()
+            switchP()
+
+        elif keys[pygame.K_5] and TTT_Board[4] == '-':
+            Omicron_Surface = pygame.image.load('Omicron.png')
+            screen.blit(Omicron_Surface, (185, 185))
+            TTT_Board[4] = 'o'
+            M_counter += 1
+            CheckWinConditions()
+            switchP()
+
+        elif keys[pygame.K_6] and TTT_Board[5] == '-':
+            Omicron_Surface = pygame.image.load('Omicron.png')
+            screen.blit(Omicron_Surface, (365, 185))
+            TTT_Board[5] = 'o'
+            M_counter += 1
+            CheckWinConditions()
+            switchP()
+
+        elif keys[pygame.K_7] and TTT_Board[6] == '-':
+            Omicron_Surface = pygame.image.load('Omicron.png')
+            screen.blit(Omicron_Surface, (20, 360))
+            TTT_Board[6] = 'o'
+            M_counter += 1
+            CheckWinConditions()
+            switchP()
+
+        elif keys[pygame.K_8] and TTT_Board[7] == '-':
+            Omicron_Surface = pygame.image.load('Omicron.png')
+            screen.blit(Omicron_Surface, (190, 360))
+            TTT_Board[7] = 'o'
+            M_counter += 1
+            CheckWinConditions()
+            switchP()
+
+        elif keys[pygame.K_9] and TTT_Board[8] == '-':
+            Omicron_Surface = pygame.image.load('Omicron.png')
+            screen.blit(Omicron_Surface, (360, 360))
+            TTT_Board[8] = 'o'
+            M_counter += 1
+            CheckWinConditions()
+            switchP()
+
+
+    # Η χρησιμότητα της συνάρτησης είναι να αναπαριστά τον παίχτη Χι
+    # καθώς τσεκάρει αν κάθε κελί είναι άδειο και το πλήκτρο που πατήθηκε είναι κάποιο από τα νούμερα 1 εώς 9
+    def Player_X():
+        global TTT_Board
+        global M_counter
+        if keys[pygame.K_1] and TTT_Board[0] == '-':
+            Xi_Surface = pygame.image.load('Xi.png')
+            screen.blit(Xi_Surface, (20, 20))
+            TTT_Board[0] = 'x'
+            M_counter += 1
+            CheckWinConditions()
+            switchP()
+
+
+        elif keys[pygame.K_2] and TTT_Board[1] == '-':
+            Xi_Surface = pygame.image.load('Xi.png')
+            screen.blit(Xi_Surface, (190, 20))
+            TTT_Board[1] = 'x'
+            M_counter += 1
+            CheckWinConditions()
+            switchP()
+
+        elif keys[pygame.K_3] and TTT_Board[2] == '-':
+            Xi_Surface = pygame.image.load('Xi.png')
+            screen.blit(Xi_Surface, (365, 20))
+            TTT_Board[2] = 'x'
+            M_counter += 1
+            CheckWinConditions()
+            switchP()
+
+        elif keys[pygame.K_4] and TTT_Board[3] == '-':
+            Xi_Surface = pygame.image.load('Xi.png')
+            screen.blit(Xi_Surface, (20, 185))
+            TTT_Board[3] = 'x'
+            M_counter += 1
+            CheckWinConditions()
+            switchP()
+
+        elif keys[pygame.K_5] and TTT_Board[4] == '-':
+            Xi_Surface = pygame.image.load('Xi.png')
+            screen.blit(Xi_Surface, (185, 185))
+            TTT_Board[4] = 'x'
+            M_counter += 1
+            CheckWinConditions()
+            switchP()
+
+
+        elif keys[pygame.K_6] and TTT_Board[5] == '-':
+            Xi_Surface = pygame.image.load('Xi.png')
+            screen.blit(Xi_Surface, (365, 185))
+            TTT_Board[5] = 'x'
+            M_counter += 1
+            CheckWinConditions()
+            switchP()
+
+        elif keys[pygame.K_7] and TTT_Board[6] == '-':
+            Xi_Surface = pygame.image.load('Xi.png')
+            screen.blit(Xi_Surface, (20, 360))
+            TTT_Board[6] = 'x'
+            M_counter += 1
+            CheckWinConditions()
+            switchP()
+
+        elif keys[pygame.K_8] and TTT_Board[7] == '-':
+            Xi_Surface = pygame.image.load('Xi.png')
+            screen.blit(Xi_Surface, (190, 360))
+            TTT_Board[7] = 'x'
+            M_counter += 1
+            CheckWinConditions()
+            switchP()
+
+
+        elif keys[pygame.K_9] and TTT_Board[8] == '-':
+            Xi_Surface = pygame.image.load('Xi.png')
+            screen.blit(Xi_Surface, (360, 360))
+            TTT_Board[8] = 'x'
+            M_counter += 1
+            CheckWinConditions()
+            switchP()
+
+    def CheckWinConditions():
         CheckRows()
         CheckColumns()
         CheckDiagonals()
-        switchPlayer()
-    if keys[pygame.K_2]:
-        screen.blit(Xi_Surface, (190, 20))
-        TTT_Board[1] = '1'
-        CheckRows()
-        CheckColumns()
-        CheckDiagonals()
-        switchPlayer()
-    if keys[pygame.K_3]:
-        screen.blit(Xi_Surface, (365, 20))
-        TTT_Board[2] = '1'
-        CheckRows()
-        CheckColumns()
-        CheckDiagonals()
-        switchPlayer()
-    if keys[pygame.K_4]:
-        screen.blit(Xi_Surface, (20, 185))
-        TTT_Board[3] = '1'
-        CheckRows()
-        CheckColumns()
-        CheckDiagonals()
-        switchPlayer()
-    if keys[pygame.K_5]:
-        screen.blit(Xi_Surface, (185, 185))
-        TTT_Board[4] = '1'
-        CheckRows()
-        CheckColumns()
-        CheckDiagonals()
-        switchPlayer()
-    if keys[pygame.K_6]:
-        screen.blit(Xi_Surface, (365, 185))
-        TTT_Board[5] = '1'
-        CheckRows()
-        CheckColumns()
-        CheckDiagonals()
-        switchPlayer()
-    if keys[pygame.K_7]:
-        screen.blit(Xi_Surface, (20, 360))
-        TTT_Board[6] = '1'
-        CheckRows()
-        CheckColumns()
-        CheckDiagonals()
-        switchPlayer()
-    if keys[pygame.K_8]:
-        screen.blit(Xi_Surface, (190, 360))
-        TTT_Board[7] = '1'
-        CheckRows()
-        CheckColumns()
-        CheckDiagonals()
-        switchPlayer()
-    if keys[pygame.K_9]:
-        screen.blit(Xi_Surface, (360, 360))
-        TTT_Board[8] = '1'
-        CheckRows()
-        CheckColumns()
-        CheckDiagonals()
-        switchPlayer()
+        CheckTie()
+
+
+
+
+    switchP()
+
 
 
     pygame.display.update() # Ανανέωση του display
-    clock.tick(60) # βάζει την το παιχνίδι σε 60 Frames Per Second
+    clock.tick(60) # βάζει το παιχνίδι σε 60 Frames Per Second
