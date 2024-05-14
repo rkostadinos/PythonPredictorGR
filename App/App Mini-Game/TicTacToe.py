@@ -21,14 +21,10 @@ TTT_Board = ['-', '-', '-', '-', '-', '-', '-', '-', '-'] # Αυτή η λίστ
 
 BackGround_surface = pygame.Surface((500, 500)) # Από εδώ και μέχρι screen.blit είναι η δημιουργία του grid της τρίλιζας
 BackGround_surface.fill('White')
-Horizontal_surface1 = pygame.Surface((500, 20))
-Horizontal_surface1.fill('Black')
-Horizontal_surface2 = pygame.Surface((500, 20))
-Horizontal_surface2.fill('Black')
-Vertical_surface1 = pygame.Surface((20, 500))
-Vertical_surface1.fill('Black')
-Vertical_surface2 = pygame.Surface((20, 500))
-Vertical_surface2.fill('Black')
+Horizontal_surface = pygame.Surface((500, 20))
+Horizontal_surface.fill('Black')
+Vertical_surface = pygame.Surface((20, 500))
+Vertical_surface.fill('Black')
 screen.blit(BackGround_surface, (0, 0))
 BreakerBool = False # Αυτή η μεταβλητή boolean χρησιμοποιείται για να σπάσει το main loop (γραμμή 38)
 M_counter = 0
@@ -40,10 +36,10 @@ while BreakerBool == False:
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
-    screen.blit(Horizontal_surface1, (0, 137.5)) # Εδώ δημιουργούνται οι ευθείες γραμμές του grid της τρίλιζας
-    screen.blit(Horizontal_surface2, (0, 317.5))
-    screen.blit(Vertical_surface1, (137.5, 0))
-    screen.blit(Vertical_surface2, (317.5, 0))
+    screen.blit(Horizontal_surface, (0, 137.5)) # Εδώ δημιουργούνται οι ευθείες γραμμές του grid της τρίλιζας
+    screen.blit(Horizontal_surface, (0, 317.5))
+    screen.blit(Vertical_surface, (137.5, 0))
+    screen.blit(Vertical_surface, (317.5, 0))
     keys = pygame.key.get_pressed()
 
     # Αυτή η συνάρτηση δίνει ένα ψευδοτυχαίο αριθμό απο το 1 μέχρι το 20
@@ -51,131 +47,76 @@ while BreakerBool == False:
     def winnerChance():
         AltPredict = random.randint(1, 20)
 
+    WonMessageX = 'X WON'
+    WonMessageO = 'O WON'
+    
+    def showmessage(WonMessage):
+        global BreakerBool
+        screen.blit(BackGround_surface, (0, 0))
+        text_surface = font.render(WonMessage, True, 'Black')
+        screen.blit(text_surface, (105, 100))
+        BreakerBool = True           
+        
+    #0, 3, 6
+    def rows(num):
+        if TTT_Board[num] == TTT_Board[num + 1] == TTT_Board[num + 2] and TTT_Board[num] == 'x':
+            showmessage(WonMessageX)
 
-
-
-
+        elif TTT_Board[num] == TTT_Board[num + 1] == TTT_Board[num + 2] and TTT_Board[num] == 'o':
+           showmessage(WonMessageO)
     # Αυτή η συνάρτηση τσεκάρει κάθε γραμμή, εμφανίζει 'X/O WON' και σπάει την while loop
     def CheckRows():
-        global BreakerBool
-        if TTT_Board[0] == TTT_Board[1] == TTT_Board[2] and TTT_Board[0] == 'x':
-            screen.blit(BackGround_surface, (0, 0))
-            text_surface = font.render('X WON', True, 'Black')
-            screen.blit(text_surface, (105, 100))
-            BreakerBool = True
+        rows(0)
+        rows(3)
+        rows(6)
+    
+    def colms(num):
+        if TTT_Board[num] == TTT_Board[num + 3] == TTT_Board[num + 6] and TTT_Board[num] == 'x':
+            showmessage(WonMessageX)
 
-        elif TTT_Board[0] == TTT_Board[1] == TTT_Board[2] and TTT_Board[0] == 'o':
-            screen.blit(BackGround_surface, (0, 0))
-            text_surface = font.render('O WON', True, 'Black')
-            screen.blit(text_surface, (105, 100))
-            BreakerBool = True
-
-        if TTT_Board[3] == TTT_Board[4] == TTT_Board[5] and TTT_Board[3] == 'x':
-            screen.blit(BackGround_surface, (0, 0))
-            text_surface = font.render('X WON', True, 'Black')
-            screen.blit(text_surface, (105, 100))
-            BreakerBool = True
-
-        elif TTT_Board[3] == TTT_Board[4] == TTT_Board[5] and TTT_Board[3] == 'o':
-            screen.blit(BackGround_surface, (0, 0))
-            text_surface = font.render('O WON', True, 'Black')
-            screen.blit(text_surface, (105, 100))
-            BreakerBool = True
-
-
-        if TTT_Board[6] == TTT_Board[7] == TTT_Board[8] and TTT_Board[6] == 'x':
-            screen.blit(BackGround_surface, (0, 0))
-            text_surface = font.render('X WON', True, 'Black')
-            screen.blit(text_surface, (105, 100))
-            BreakerBool = True
-
-        elif TTT_Board[6] == TTT_Board[7] == TTT_Board[8] and TTT_Board[6] == 'o':
-            screen.blit(BackGround_surface, (0, 0))
-            text_surface = font.render('O WON', True, 'Black')
-            screen.blit(text_surface, (105, 100))
-            BreakerBool = True
+        elif TTT_Board[num] == TTT_Board[num + 3] == TTT_Board[num + 6] and TTT_Board[num] == 'o':
+           showmessage(WonMessageO)
 
 
 
 
     # Αυτή η συνάρτηση τσεκάρει κάθε στήλη, εμφανίζει 'X/O WON' και σπάει την while loop
     def CheckColumns():
-        global BreakerBool
-        if TTT_Board[0] == TTT_Board[3] == TTT_Board[6] and TTT_Board[0] == 'x':
-            screen.blit(BackGround_surface, (0, 0))
-            text_surface = font.render('X WON', True, 'Black')
-            screen.blit(text_surface, (105, 100))
-            BreakerBool = True
-
-        elif TTT_Board[0] == TTT_Board[3] == TTT_Board[6] and TTT_Board[0] == 'o':
-            screen.blit(BackGround_surface, (0, 0))
-            text_surface = font.render('O WON', True, 'Black')
-            screen.blit(text_surface, (105, 100))
-            BreakerBool = True
-
-        if TTT_Board[1] == TTT_Board[4] == TTT_Board[7] and TTT_Board[1] == 'x':
-            screen.blit(BackGround_surface, (0, 0))
-            text_surface = font.render('X WON', True, 'Black')
-            screen.blit(text_surface, (105, 100))
-            BreakerBool = True
-
-        elif TTT_Board[1] == TTT_Board[4] == TTT_Board[7] and TTT_Board[1] == 'o':
-            screen.blit(BackGround_surface, (0, 0))
-            text_surface = font.render('O WON', True, 'Black')
-            screen.blit(text_surface, (105, 100))
-            BreakerBool = True
+        colms(0)
+        colms(1)
+        colms(2)
+        
 
 
-        if TTT_Board[2] == TTT_Board[5] == TTT_Board[8] and TTT_Board[2] == 'x':
-            screen.blit(BackGround_surface, (0, 0))
-            text_surface = font.render('X WON', True, 'Black')
-            screen.blit(text_surface, (105, 100))
-            BreakerBool = True
+        
 
-        elif TTT_Board[2] == TTT_Board[5] == TTT_Board[8] and TTT_Board[2] == 'o':
-            screen.blit(BackGround_surface, (0, 0))
-            text_surface = font.render('O WON', True, 'Black')
-            screen.blit(text_surface, (105, 100))
-            BreakerBool = True
-
-
+    def Diags(num):
+        
+        third_cell = 8 - num 
+            
+        if TTT_Board[num] == TTT_Board[4] == TTT_Board[third_cell] and TTT_Board[num] == 'x':
+            showmessage(WonMessageX)
+        elif TTT_Board[num] == TTT_Board[4] == TTT_Board[third_cell] and TTT_Board[num] == 'o':
+            showmessage(WonMessageO)
+        
+            
 
     def CheckDiagonals(): # Αυτή η συνάρτηση τσεκάρει κάθε διαγώνιο, εμφανίζει 'X/O WON' και σπάει την while loop
-        global BreakerBool
-        if TTT_Board[0] == TTT_Board[4] == TTT_Board[8] and TTT_Board[0] == 'x':
-            screen.blit(BackGround_surface, (0, 0))
-            text_surface = font.render('X WON', True, 'Black')
-            screen.blit(text_surface, (105, 100))
-            BreakerBool = True
+        Diags(0)
+        Diags(2)
+        
 
-        elif TTT_Board[0] == TTT_Board[4] == TTT_Board[8] and TTT_Board[0] == 'o':
-            screen.blit(BackGround_surface, (0, 0))
-            text_surface = font.render('O WON', True, 'Black')
-            screen.blit(text_surface, (105, 100))
-            BreakerBool = True
-
-        if TTT_Board[2] == TTT_Board[4] == TTT_Board[6] and TTT_Board[2] == 'x':
-            screen.blit(BackGround_surface, (0, 0))
-            text_surface = font.render('X WON', True, 'Black')
-            screen.blit(text_surface, (105, 100))
-            BreakerBool = True
-
-        elif TTT_Board[2] == TTT_Board[4] == TTT_Board[6] and TTT_Board[2] == 'o':
-            screen.blit(BackGround_surface, (0, 0))
-            text_surface = font.render('O WON', True, 'Black')
-            screen.blit(text_surface, (105, 100))
-            BreakerBool = True
+        
 
 
 
+    TieMessage = 'TIE'
     # Αυτή η συνάρτηση τσεκάρει για ισοπαλία και εμφανίζει την κατάσταση ισοπαλίας στο τέλος
     def CheckTie():
         global BreakerBool
         if M_counter >= 9:
-            screen.blit(BackGround_surface, (0, 0))
-            text_surface = font.render('TIE', True, 'Black')
-            screen.blit(text_surface, (105, 100))
-            BreakerBool = True
+            showmessage(TieMessage)
+
 
 
 
@@ -184,30 +125,16 @@ while BreakerBool == False:
 
     #switchP Αλλάζει την/τον παίχτη, M_counter λειτουργεί ως μετρητής για να ελέγχει την σειρά κάθε παίχτη
     #Μιας και η πρώτη σειρά θα είναι πάντα το X η πρώτη κίνηση θα αυξήσει το M_counter ανά 1, κ.ο.κ
-
+    #
     def switchP():
         CheckWinConditions()
-        if M_counter == 0:
+        if M_counter % 2 == 0:
             Player_X()
-        elif M_counter == 1:
+        else:
             Player_O()
-        elif M_counter == 2:
-            Player_X()
-        elif M_counter == 3:
-            Player_O()
-        elif M_counter == 4:
-            Player_X()
-        elif M_counter == 5:
-            Player_O()
-        elif M_counter == 6:
-            Player_X()
-        elif M_counter == 7:
-            Player_O()
-        elif M_counter == 8:
-            Player_X()
-        elif M_counter == 9:
-            CheckTie()
-            CheckWinConditions()
+        CheckTie()
+        CheckWinConditions()
+            
 
 
 
