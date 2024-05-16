@@ -49,7 +49,7 @@ while BreakerBool == False:
 
     WonMessageX = 'X WON'
     WonMessageO = 'O WON'
-    
+    # Αυτή η συνάρτηση χρησιμοποιήται για να εμφανιστεί μήνυμα νίκης στο τέλος
     def showmessage(WonMessage):
         global BreakerBool
         screen.blit(BackGround_surface, (0, 0))
@@ -57,30 +57,30 @@ while BreakerBool == False:
         screen.blit(text_surface, (105, 100))
         BreakerBool = True           
         
-    #0, 3, 6
+    
     def rows(num):
         if TTT_Board[num] == TTT_Board[num + 1] == TTT_Board[num + 2] and TTT_Board[num] == 'x':
             showmessage(WonMessageX)
 
         elif TTT_Board[num] == TTT_Board[num + 1] == TTT_Board[num + 2] and TTT_Board[num] == 'o':
            showmessage(WonMessageO)
-    # Αυτή η συνάρτηση τσεκάρει κάθε γραμμή, εμφανίζει 'X/O WON' και σπάει την while loop
+    # Αυτές οι δύο συναρτήσεις τσεκάρουν κάθε γραμμή, εμφανίζεται 'X/O WON' και σπάει την while loop στο τ
     def CheckRows():
         rows(0)
         rows(3)
         rows(6)
     
-    def colms(num):
+    def colms(num): # αυτή η συνάρτηση τσεκάρει αν σε κάθε στήλη υπάρχουν 3 ίδια γράμματα στην σειρά
         if TTT_Board[num] == TTT_Board[num + 3] == TTT_Board[num + 6] and TTT_Board[num] == 'x':
             showmessage(WonMessageX)
 
         elif TTT_Board[num] == TTT_Board[num + 3] == TTT_Board[num + 6] and TTT_Board[num] == 'o':
            showmessage(WonMessageO)
 
+    
 
 
-
-    # Αυτή η συνάρτηση τσεκάρει κάθε στήλη, εμφανίζει 'X/O WON' και σπάει την while loop
+    # Αυτή η συνάρτηση τσεκάρει κάθε στήλη χρησιμοποιώντας την πάνω
     def CheckColumns():
         colms(0)
         colms(1)
@@ -101,7 +101,7 @@ while BreakerBool == False:
         
             
 
-    def CheckDiagonals(): # Αυτή η συνάρτηση τσεκάρει κάθε διαγώνιο, εμφανίζει 'X/O WON' και σπάει την while loop
+    def CheckDiagonals(): # Αυτή η συνάρτηση τσεκάρει κάθε διαγώνιο χρησιμοποιώντας την πάνω
         Diags(0)
         Diags(2)
         
@@ -297,7 +297,7 @@ while BreakerBool == False:
             M_counter += 1
             CheckWinConditions()
             switchP()
-
+    # αυτή η συνάρτηση καλεί όλες τις συναρτήσεις που ελέχγουν τις προϋποθέσεις νίκης
     def CheckWinConditions():
         CheckRows()
         CheckColumns()
