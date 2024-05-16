@@ -49,7 +49,7 @@ while BreakerBool == False:
 
     WonMessageX = 'X WON'
     WonMessageO = 'O WON'
-    # Αυτή η συνάρτηση χρησιμοποιήται για να εμφανιστεί μήνυμα νίκης στο τέλος
+    # Αυτή η συνάρτηση χρησιμοποιείται για να εμφανιστεί μήνυμα νίκης στο τέλος
     def showmessage(WonMessage):
         global BreakerBool
         screen.blit(BackGround_surface, (0, 0))
@@ -125,7 +125,9 @@ while BreakerBool == False:
 
     #switchP Αλλάζει την/τον παίχτη, M_counter λειτουργεί ως μετρητής για να ελέγχει την σειρά κάθε παίχτη
     #Μιας και η πρώτη σειρά θα είναι πάντα το X η πρώτη κίνηση θα αυξήσει το M_counter ανά 1, κ.ο.κ
-    #
+    #όμως, κάθε φορά που είναι σειρά του player_x το m_counter είναι άρτιος αριθμός
+    #επομένως χρειάζεται μόνο να ελέγχεται αν η τιμή του m_counter είναι ζυγός αριθμός
+    #ώστε καθοριστεί ποιό άτομο θα παίξει
     def switchP():
         CheckWinConditions()
         if M_counter % 2 == 0:
