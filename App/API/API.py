@@ -1,5 +1,6 @@
 import requests
 import json
+# inf2021192 Κωνσταντίνος Ράπτης
 # Ο σύνδεσμος του API και το token για να μπορέσουμε να χρησιμοποιήουμε τα δεδομένα του API
 uri = 'https://api.football-data.org/v4/matches'
 headers = { 'X-Auth-Token': 'f3512f1017274e95a9559ea0d9a2debf'}
