@@ -11,7 +11,6 @@ https://youtu.be/dK6gJw4-NCo?si=Q5uGz6X6o4kFAs5p
 """
 
 
-
 pygame.init()
 screen = pygame.display.set_mode((500, 500))
 pygame.display.set_caption("Τρίλιζα")
@@ -30,7 +29,6 @@ BreakerBool = False # Αυτή η μεταβλητή boolean χρησιμοπο�
 M_counter = 0
 
 
-
 while BreakerBool == False:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -47,8 +45,8 @@ while BreakerBool == False:
     def winnerChance():
         AltPredict = random.randint(1, 20)
 
-    WonMessageX = 'X WON'
-    WonMessageO = 'O WON'
+    WonMessageX = 'Το X νίκησε!'
+    WonMessageO = 'Το Ο νίκησε!'
     # Αυτή η συνάρτηση χρησιμοποιείται για να εμφανιστεί μήνυμα νίκης στο τέλος
     def showmessage(WonMessage):
         global BreakerBool
@@ -75,9 +73,7 @@ while BreakerBool == False:
             showmessage(WonMessageX)
 
         elif TTT_Board[num] == TTT_Board[num + 3] == TTT_Board[num + 6] and TTT_Board[num] == 'o':
-           showmessage(WonMessageO)
-
-    
+           showmessage(WonMessageO)    
 
 
     # Αυτή η συνάρτηση τσεκάρει κάθε στήλη χρησιμοποιώντας την πάνω
@@ -85,10 +81,7 @@ while BreakerBool == False:
         colms(0)
         colms(1)
         colms(2)
-        
-
-
-        
+                
 
     def Diags(num):
         
@@ -98,17 +91,12 @@ while BreakerBool == False:
             showmessage(WonMessageX)
         elif TTT_Board[num] == TTT_Board[4] == TTT_Board[third_cell] and TTT_Board[num] == 'o':
             showmessage(WonMessageO)
-        
-            
+                    
 
     def CheckDiagonals(): # Αυτή η συνάρτηση τσεκάρει κάθε διαγώνιο χρησιμοποιώντας την πάνω
         Diags(0)
         Diags(2)
-        
-
-        
-
-
+                
 
     TieMessage = 'TIE'
     # Αυτή η συνάρτηση τσεκάρει για ισοπαλία και εμφανίζει την κατάσταση ισοπαλίας στο τέλος
@@ -116,11 +104,6 @@ while BreakerBool == False:
         global BreakerBool
         if M_counter >= 9:
             showmessage(TieMessage)
-
-
-
-
-
 
 
     #switchP Αλλάζει την/τον παίχτη, M_counter λειτουργεί ως μετρητής για να ελέγχει την σειρά κάθε παίχτη
@@ -135,11 +118,7 @@ while BreakerBool == False:
         else:
             Player_O()
         CheckTie()
-        CheckWinConditions()
-            
-
-
-
+        CheckWinConditions()            
 
 
     # Η χρησιμότητα της συνάρτησης είναι να αναπαριστά τον παίχτη όμικρον
@@ -307,10 +286,7 @@ while BreakerBool == False:
         CheckTie()
 
 
-
-
     switchP()
-
 
 
     pygame.display.update() # Ανανέωση του display

@@ -7,3 +7,8 @@ A football Prediction game like Predictor from UEFA gaming.
             Α. Ζήσης (inf2023055), Σ. Πανιπέρης (inf2023159), Κ. Ράπτης (inf2021192) και Σ. Φλωρόπουλος (inf2023232).
 
             
+Το YouTube video:
+            
+            link
+
+            
