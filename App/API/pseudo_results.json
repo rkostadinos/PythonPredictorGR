@@ -1,0 +1,22 @@
+[
+    {
+        "homeTeam": {"name": "Team A"},
+        "awayTeam": {"name": "Team B"},
+        "score": {"fullTime": {"homeTeam": 1, "awayTeam": 0}}
+    },
+    {
+        "homeTeam": {"name": "Team C"},
+        "awayTeam": {"name": "Team D"},
+        "score": {"fullTime": {"homeTeam": 2, "awayTeam": 2}}
+    },
+    {
+        "homeTeam": {"name": "Team E"},
+        "awayTeam": {"name": "Team F"},
+        "score": {"fullTime": {"homeTeam": 3, "awayTeam": 1}}
+    },
+    {
+        "homeTeam": {"name": "Team G"},
+        "awayTeam": {"name": "Team H"},
+        "score": {"fullTime": {"homeTeam": 0, "awayTeam": 0}}
+    }
+]
