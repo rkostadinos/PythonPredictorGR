@@ -57,7 +57,7 @@ def get_player_predictions(match):
     player1_pred_window = tk.Toplevel(root)
     player1_pred_window.withdraw()
 
-    player1_score = simpledialog.askstring("Πρόβλεψη Παίκτη 1", f"Δώσε την πρόβλεψή σου για τον επιλεγμένο αγώνα:")
+    player1_score = simpledialog.askstring("Πρόβλεψη παίκτη 1", f"Δώσε την πρόβλεψή σου για τον επιλεγμένο αγώνα:")
     if player1_score is None:
     	player1_pred_window.destroy()
     	return
@@ -68,7 +68,7 @@ def get_player_predictions(match):
     player2_pred_window = tk.Toplevel(root)
     player2_pred_window.withdraw()
 
-    player2_score = simpledialog.askstring("Πρόβλεψη Παίκτη 2", f"Δώσε την πρόβλεψή σου για τον επιλεγμένο αγώνα:")
+    player2_score = simpledialog.askstring("Πρόβλεψη παίκτη 2", f"Δώσε την πρόβλεψή σου για τον επιλεγμένο αγώνα:")
     if player2_score is None:
     	player2_pred_window.destroy()
     	return
