@@ -1,3 +1,4 @@
 #!/bin/sh
 
-cd ./App/GUI && ./GUI.py
+cd ./App/GUI || cd .\App\GUI
+./GUI.py || .\GUI.py
