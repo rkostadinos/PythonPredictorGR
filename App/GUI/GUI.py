@@ -125,7 +125,7 @@ def show_winner(player1_points, player2_points):
     elif player2_points > player1_points:
         messagebox.showinfo("Νικητής", f"Ο παίκτης 2 κερδίζει με {player2_points} πόντους, ενώ ο παίκτης 1 συγκέντρωσε {player1_points} πόντους!")
     else:
-        messagebox.showinfo("Ισοπαλία", "Η πρόβλεψη είναι ισοπαλία, οι παίκτες συγκέντρωσαν {player1_points} πόντους!")
+        messagebox.showinfo("Ισοπαλία", f"Οι προβλέψεις είναι ισόβαθμες καθώς οι παίκτες συγκέντρωσαν {player1_points} πόντους!")
 
 # Εύρεση αποτελεσμάτων αγώνα
 def check_results():
