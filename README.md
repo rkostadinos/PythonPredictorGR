@@ -12,3 +12,11 @@ A football Prediction game like Predictor from UEFA gaming.
             link
 
             
+Για το τρέξιμο του προγράμματος, πρώτα εκτελέστε σε αυτό το directory:
+            
+            pip3 install -r requirements.txt
+
+            
+Μετά, με την προϋπόθεση ότι είστε σε περιβάλλον Linux, εκτελέστε το launch.sh:
+            
+            ./launch.sh
