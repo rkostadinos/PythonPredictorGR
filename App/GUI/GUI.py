@@ -126,10 +126,13 @@ def calculate_points(player1_score, player2_score, match_result):
 def show_winner(player1_points, player2_points):
     if player1_points > player2_points:
         messagebox.showinfo("Νικητής", f"Ο Παίκτης 1 κερδίζει με {player1_points} πόντους!")
+        messagebox.showinfo("",f"Ο Παίκτης 2 συγκέντρωσε {player2_points} πόντους!")
     elif player2_points > player1_points:
         messagebox.showinfo("Νικητής", f"Ο Παίκτης 2 κερδίζει με {player2_points} πόντους!")
+        messagebox.showinfo("",f"Ο Παίκτης 1 συγκέντρωσε {player1_points} πόντους!")
     else:
         messagebox.showinfo("Ισοπαλία", "Η πρόβλεψη είναι ισοπαλία!")
+        messagebox.showinfo("",f"Οι Παίκτες συγκέντρωσαν {player2_points} πόντους!")
 
 # Εύρεση αποτελεσμάτων αγώνα
 def check_results():
