@@ -55,19 +55,27 @@ def refresh_matches(matches_window):
 def get_player_predictions(match):
     # Νέο παράθυρο για τον Παίκτη 1
     player1_pred_window = tk.Toplevel(root)
-    player1_pred_window.title("Πρόβλεψη Παίκτη 1")
-    player1_pred_window.geometry("300x200")
+    # player1_pred_window.title("Πρόβλεψη Παίκτη 1")
+    # player1_pred_window.geometry("300x200")
+    player1_pred_window.withdraw()
 
-    player1_score = simpledialog.askstring("Πρόβλεψη Παίκτη 1", f"Δώσε την πρόβλεψή σου για τον αγώνα {match['homeTeam']['name']} vs {match['awayTeam']['name']}")
+    player1_score = simpledialog.askstring("Πρόβλεψη Παίκτη 1", f"Δώσε την πρόβλεψή σου για τον επιλεγμένο αγώνα:")
+    if player1_score is None:
+    	player1_pred_window.destroy()
+    	return
 
     player1_pred_window.destroy()
 
     # Νέο παράθυρο για τον Παίκτη 2
     player2_pred_window = tk.Toplevel(root)
-    player2_pred_window.title("Πρόβλεψη Παίκτη 2")
-    player2_pred_window.geometry("300x200")
+    # player2_pred_window.title("Πρόβλεψη Παίκτη 2")
+    # player2_pred_window.geometry("300x200")
+    player2_pred_window.withdraw()
 
-    player2_score = simpledialog.askstring("Πρόβλεψη Παίκτη 2", f"Δώσε την πρόβλεψή σου για τον αγώνα {match['homeTeam']['name']} vs {match['awayTeam']['name']}")
+    player2_score = simpledialog.askstring("Πρόβλεψη Παίκτη 2", f"Δώσε την πρόβλεψή σου για τον επιλεγμένο αγώνα:")
+    if player2_score is None:
+    	player2_pred_window.destroy()
+    	return
 
     player2_pred_window.destroy()
 

@@ -1,8 +1,10 @@
-#!/bin/sh
+@echo off
 
-python --version || (winget install -e --id Python.Python.3.12 --scope machine || pacman -Sy python || apt-get install python || dnf install python || yum install python)
+python --version || winget install -e --id Python.Python.3.12 --scope machine
 
-(pip install -r ./requirements.txt || pip install -r .\requirements.txt)
+pip install -r .\requirements.txt >nul 2>&1
 
-cd ./App/GUI || cd .\App\GUI
-./GUI.py || .\GUI.py
+cd .\App\GUI
+.\GUI.py
+
+pause
