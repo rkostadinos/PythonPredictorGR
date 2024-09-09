@@ -12,4 +12,4 @@ A football Prediction game like Predictor from UEFA gaming.
             link
 
             
-Για το τρέξιμο του προγράμματος, εκτελέστε σε αυτό το directory το launch.bat.
+Για το τρέξιμο του προγράμματος, εκτελέστε σε αυτό το directory το launch.bat (Windows) ή launch.sh (Linux).

@@ -7,4 +7,4 @@ pip install -r ./requirements.txt >/dev/null 2>&1
 cd ./App/GUI
 ./GUI.py
 
-pause
+sleep 5
