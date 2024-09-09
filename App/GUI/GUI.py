@@ -107,14 +107,14 @@ def calculate_points(player1_score, player2_score, match_result):
     actual_away_score = match_result['awayTeam']
 
     if (player1_predicted_home == actual_home_score and player1_predicted_away == actual_away_score):
-        player1_points += 3  # Ο Παίκτης 1 πήρε σωστά το σκορ
+        player1_points = 3  # Ο Παίκτης 1 πήρε σωστά το σκορ
     elif (player1_predicted_home > player1_predicted_away and actual_home_score > actual_away_score) or (player1_predicted_home < player1_predicted_away and actual_home_score < actual_away_score) or (player1_predicted_home == player1_predicted_away and actual_home_score == actual_away_score):
-        player1_points += 2  # Ο Παίκτης 1 βρήκε τη νικήτρια ομάδα/την ισοπαλία
+        player1_points = 2  # Ο Παίκτης 1 βρήκε τη νικήτρια ομάδα/την ισοπαλία
 
     if (player2_predicted_home == actual_home_score and player2_predicted_away == actual_away_score):
-        player2_points += 3  # Ο Παίκτης 2 πήρε σωστά το σκορ
+        player2_points = 3  # Ο Παίκτης 2 πήρε σωστά το σκορ
     elif (player2_predicted_home > player2_predicted_away and actual_home_score > actual_away_score) or (player2_predicted_home < player2_predicted_away and actual_home_score < actual_away_score) or (player2_predicted_home == player2_predicted_away and actual_home_score == actual_away_score):
-        player2_points += 2  # Ο Παίκτης 2 βρήκε τη νικήτρια ομάδα/την ισοπαλία
+        player2_points = 2  # Ο Παίκτης 2 βρήκε τη νικήτρια ομάδα/την ισοπαλία
 
     return player1_points, player2_points
 
@@ -125,7 +125,7 @@ def show_winner(player1_points, player2_points):
     elif player2_points > player1_points:
         messagebox.showinfo("Νικητής", f"Ο παίκτης 2 κερδίζει με {player2_points} πόντους, ενώ ο παίκτης 1 συγκέντρωσε {player1_points} πόντους!")
     else:
-        messagebox.showinfo("Ισοπαλία", f"Οι προβλέψεις είναι ισόβαθμες καθώς οι παίκτες συγκέντρωσαν {player1_points} πόντους!")
+        messagebox.showinfo("Ισοπαλία", f"Οι προβλέψεις είναι ισόβαθμες, καθώς οι παίκτες συγκέντρωσαν {player1_points} πόντους.")
 
 # Εύρεση αποτελεσμάτων αγώνα
 def check_results():
