@@ -1,6 +1,0 @@
-Defaulting to user installation because normal site-packages is not writeable
-Requirement already satisfied: pygame in /home/mazter/.local/lib/python3.12/site-packages (from -r ./requirements.txt (line 1)) (2.6.0)
-Requirement already satisfied: requests in /usr/lib/python3.12/site-packages (from -r ./requirements.txt (line 2)) (2.31.0)
-Requirement already satisfied: charset-normalizer<4,>=2 in /usr/lib/python3.12/site-packages (from requests->-r ./requirements.txt (line 2)) (3.3.2)
-Requirement already satisfied: idna<4,>=2.5 in /usr/lib/python3.12/site-packages (from requests->-r ./requirements.txt (line 2)) (3.7)
-Requirement already satisfied: urllib3<3,>=1.21.1 in /usr/lib/python3.12/site-packages (from requests->-r ./requirements.txt (line 2)) (1.26.19)
